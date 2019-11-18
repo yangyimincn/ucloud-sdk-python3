@@ -167,4 +167,5 @@ class UHostPriceSetSchema(schema.ResponseSchema):
     fields = {
         "ChargeType": fields.Str(required=True, load_from="ChargeType"),
         "Price": fields.Float(required=True, load_from="Price"),
+        "ListPrice": fields.Float(required=False, load_from="ListPrice"),
     }
