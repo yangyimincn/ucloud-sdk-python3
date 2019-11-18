@@ -248,4 +248,6 @@ class EIPPriceDetailSetSchema(schema.ResponseSchema):
         "ChargeType": fields.Str(required=False, load_from="ChargeType"),
         "Price": fields.Float(required=False, load_from="Price"),
         "PurchaseValue": fields.Int(required=False, load_from="PurchaseValue"),
+        "OriginalPrice": fields.Float(required=False, load_from="OriginalPrice"),
+        "ListPrice": fields.Float(required=False, load_from="ListPrice"),
     }
