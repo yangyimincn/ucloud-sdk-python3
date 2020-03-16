@@ -25,6 +25,7 @@ class Request:
         self.data = data
         self.json = json
         self.headers = headers
+        self.request_time = 0
 
     def payload(self):
         payload = (self.params or {}).copy()
@@ -54,6 +55,7 @@ class Response:
         self.headers = headers
         self.content = content
         self.encoding = encoding
+        self.response_time = 0
 
     def json(self, **kwargs) -> typing.Optional[dict]:
         """ json will return the bytes of content
@@ -86,8 +88,22 @@ class Response:
         return content
 
 
+class SSLOption:
+    def __init__(
+        self,
+        ssl_verify: bool = True,
+        ssl_cacert: str = None,
+        ssl_cert: str = None,
+        ssl_key: str = None,
+    ):
+        self.ssl_verify = ssl_verify
+        self.ssl_cacert = ssl_cacert
+        self.ssl_cert = ssl_cert
+        self.ssl_key = ssl_key
+
+
 class Transport:
     """ the abstract class of transport implementation """
 
-    def send(self, req: Request, **options: dict) -> Response:
+    def send(self, req: Request, **options: typing.Any) -> Response:
         raise NotImplementedError

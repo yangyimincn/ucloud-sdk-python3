@@ -4,7 +4,12 @@ import sys
 
 from ucloud import version
 from ucloud.core.client._cfg import Config
-from ucloud.core.transport import Transport, RequestsTransport, Request
+from ucloud.core.transport import (
+    Transport,
+    RequestsTransport,
+    Request,
+    SSLOption,
+)
 from ucloud.core.typesystem import encoder
 from ucloud.core.utils import log
 from ucloud.core.utils.middleware import Middleware
@@ -46,6 +51,9 @@ class Client:
             try:
                 return self._send(action, args or {}, **options)
             except exc.UCloudException as e:
+                for handler in self.middleware.exception_handlers:
+                    handler(e)
+
                 if e.retryable and retries != max_retries:
                     logging.info(
                         "Retrying {action}: {args}".format(
@@ -54,8 +62,11 @@ class Client:
                     )
                     retries += 1
                     continue
+
                 raise e
             except Exception as e:
+                for handler in self.middleware.exception_handlers:
+                    handler(e)
                 raise e
 
     @property
@@ -74,7 +85,7 @@ class Client:
 
     @staticmethod
     def _parse_dict_config(
-        config: dict
+        config: dict,
     ) -> typing.Tuple[Config, auth.Credential]:
         return Config.from_dict(config), auth.Credential.from_dict(config)
 
@@ -86,8 +97,17 @@ class Client:
 
         max_retries = options.get("max_retries") or self.config.max_retries
         timeout = options.get("timeout") or self.config.timeout
+
         resp = self.transport.send(
-            req, timeout=timeout, max_retries=max_retries
+            req,
+            ssl_option=SSLOption(
+                self.config.ssl_verify,
+                self.config.ssl_cacert,
+                self.config.ssl_cert,
+                self.config.ssl_key,
+            ),
+            timeout=timeout,
+            max_retries=max_retries,
         ).json()
 
         for handler in self.middleware.response_handlers:
