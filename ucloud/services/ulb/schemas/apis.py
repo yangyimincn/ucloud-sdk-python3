@@ -22,7 +22,7 @@ class AllocateBackendRequestSchema(schema.RequestSchema):
     fields = {
         "Enabled": fields.Int(required=False, dump_to="Enabled"),
         "Port": fields.Int(required=False, dump_to="Port"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ResourceId": fields.Str(required=True, dump_to="ResourceId"),
         "ResourceType": fields.Str(required=True, dump_to="ResourceType"),
@@ -53,7 +53,7 @@ class AllocateBackendBatchRequestSchema(schema.RequestSchema):
     fields = {
         "ApiVersion": fields.Int(required=False, dump_to="ApiVersion"),
         "Backends": fields.List(fields.Str()),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
         "VServerId": fields.Str(required=True, dump_to="VServerId"),
@@ -83,7 +83,7 @@ class BindSSLRequestSchema(schema.RequestSchema):
     """
 
     fields = {
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "SSLId": fields.Str(required=True, dump_to="SSLId"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
@@ -112,7 +112,7 @@ class CreatePolicyRequestSchema(schema.RequestSchema):
     fields = {
         "BackendId": fields.List(fields.Str()),
         "Match": fields.Str(required=True, dump_to="Match"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "Type": fields.Str(required=False, dump_to="Type"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
@@ -141,7 +141,7 @@ class CreateSSLRequestSchema(schema.RequestSchema):
     fields = {
         "CaCert": fields.Str(required=False, dump_to="CaCert"),
         "PrivateKey": fields.Str(required=False, dump_to="PrivateKey"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "SSLContent": fields.Str(required=False, dump_to="SSLContent"),
         "SSLName": fields.Str(required=True, dump_to="SSLName"),
@@ -176,7 +176,7 @@ class CreateULBRequestSchema(schema.RequestSchema):
         "ListenType": fields.Str(required=False, dump_to="ListenType"),
         "OuterMode": fields.Str(required=False, dump_to="OuterMode"),
         "PrivateIp": fields.Str(required=False, dump_to="PrivateIp"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "Remark": fields.Str(required=False, dump_to="Remark"),
         "SubnetId": fields.Str(required=False, dump_to="SubnetId"),
@@ -247,7 +247,7 @@ class DeletePolicyRequestSchema(schema.RequestSchema):
     fields = {
         "GroupId": fields.Str(required=False, dump_to="GroupId"),
         "PolicyId": fields.Str(required=True, dump_to="PolicyId"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "VServerId": fields.Str(required=False, dump_to="VServerId"),
     }
@@ -272,7 +272,7 @@ class DeleteSSLRequestSchema(schema.RequestSchema):
     """
 
     fields = {
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "SSLId": fields.Str(required=True, dump_to="SSLId"),
     }
@@ -297,7 +297,7 @@ class DeleteULBRequestSchema(schema.RequestSchema):
     """
 
     fields = {
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ReleaseEip": fields.Bool(required=False, dump_to="ReleaseEip"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
@@ -323,7 +323,7 @@ class DeleteVServerRequestSchema(schema.RequestSchema):
     """
 
     fields = {
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
         "VServerId": fields.Str(required=True, dump_to="VServerId"),
@@ -351,7 +351,7 @@ class DescribeSSLRequestSchema(schema.RequestSchema):
     fields = {
         "Limit": fields.Int(required=False, dump_to="Limit"),
         "Offset": fields.Int(required=False, dump_to="Offset"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "SSLId": fields.Str(required=False, dump_to="SSLId"),
     }
@@ -384,7 +384,7 @@ class DescribeULBRequestSchema(schema.RequestSchema):
         "BusinessId": fields.Str(required=False, dump_to="BusinessId"),
         "Limit": fields.Int(required=False, dump_to="Limit"),
         "Offset": fields.Int(required=False, dump_to="Offset"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "SubnetId": fields.Str(required=False, dump_to="SubnetId"),
         "ULBId": fields.Str(required=False, dump_to="ULBId"),
@@ -418,7 +418,7 @@ class DescribeVServerRequestSchema(schema.RequestSchema):
     fields = {
         "Limit": fields.Int(required=False, dump_to="Limit"),
         "Offset": fields.Int(required=False, dump_to="Offset"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
         "VServerId": fields.Str(required=False, dump_to="VServerId"),
@@ -450,7 +450,7 @@ class ReleaseBackendRequestSchema(schema.RequestSchema):
 
     fields = {
         "BackendId": fields.Str(required=True, dump_to="BackendId"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
     }
@@ -475,7 +475,7 @@ class UnbindSSLRequestSchema(schema.RequestSchema):
     """
 
     fields = {
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "SSLId": fields.Str(required=True, dump_to="SSLId"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
@@ -505,7 +505,7 @@ class UpdateBackendAttributeRequestSchema(schema.RequestSchema):
         "BackendId": fields.Str(required=True, dump_to="BackendId"),
         "Enabled": fields.Int(required=False, dump_to="Enabled"),
         "Port": fields.Int(required=False, dump_to="Port"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
         "Weight": fields.Int(required=False, dump_to="Weight"),
@@ -534,7 +534,7 @@ class UpdatePolicyRequestSchema(schema.RequestSchema):
         "BackendId": fields.List(fields.Str()),
         "Match": fields.Str(required=True, dump_to="Match"),
         "PolicyId": fields.Str(required=True, dump_to="PolicyId"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "Type": fields.Str(required=False, dump_to="Type"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
@@ -562,7 +562,7 @@ class UpdateULBAttributeRequestSchema(schema.RequestSchema):
 
     fields = {
         "Name": fields.Str(required=False, dump_to="Name"),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "Remark": fields.Str(required=False, dump_to="Remark"),
         "Tag": fields.Str(required=False, dump_to="Tag"),
@@ -600,7 +600,7 @@ class UpdateVServerAttributeRequestSchema(schema.RequestSchema):
         "PersistenceType": fields.Str(
             required=False, dump_to="PersistenceType"
         ),
-        "ProjectId": fields.Str(required=True, dump_to="ProjectId"),
+        "ProjectId": fields.Str(required=False, dump_to="ProjectId"),
         "Protocol": fields.Str(required=False, dump_to="Protocol"),
         "Region": fields.Str(required=True, dump_to="Region"),
         "ULBId": fields.Str(required=True, dump_to="ULBId"),
