@@ -126,3 +126,9 @@ class Client(CompactClient):
         return VPCClient(
             self._config, self.transport, self.middleware, self.logger
         )
+
+    def umon(self):
+        from ucloud.services.umon.client import UMonClient
+        return UMonClient(
+            self._config, self.transport, self.middleware, self.logger
+        )

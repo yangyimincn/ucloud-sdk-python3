@@ -147,3 +147,17 @@ class Bool(abstract.Field):
             return False
 
         self.fail(name, "bool", type(value))
+
+
+class Dict(abstract.Field):
+    def dumps(self, value, name=None, **kwargs):
+        return self._convert(value, name)
+
+    def loads(self, value, name=None, **kwargs):
+        return self._convert(value, name)
+
+    def _convert(self, value, name=None):
+        if self.strict and not isinstance(value, dict):
+            self.fail(name, "dict", type(value))
+
+        return value
